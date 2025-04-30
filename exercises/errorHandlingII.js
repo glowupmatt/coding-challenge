@@ -1,4 +1,6 @@
-module.exports.run = function(url){
+const axios = require('axios');
+
+module.exports.run = async function(url){
 /*
 	You are given a url. Make a GET call with axios using the given url.
 	However, there is something wrong with the url, and it throws an error.
@@ -8,4 +10,11 @@ module.exports.run = function(url){
 
 	Write your code below the comment.
 */
+		try {
+			const response = await axios.get(url)
+			const data = response.data
+			return data
+		} catch (error) {
+			return "Error: " + error.message 
+		}
 };

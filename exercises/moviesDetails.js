@@ -1,4 +1,6 @@
-module.exports.run = function(movies) {
+const axios = require('axios');
+
+module.exports.run = async function (movies) {
 /*
 	You are given a list of urls that will be used to search up movies.
 	Make a GET call with axios using the given urls to search each movies.
@@ -16,5 +18,12 @@ module.exports.run = function(movies) {
 
 	Write your code below the comment.
 */
-
+	try {
+		const promises = movies.map(link => axios.get(link))
+		const responses = await Promise.all(promises)
+		const data = responses.map(res => res.data)
+		return data
+	} catch (error) {
+		console.error("Error: ", error)
+	}
 };

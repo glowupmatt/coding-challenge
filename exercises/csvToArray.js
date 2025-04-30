@@ -15,5 +15,27 @@ module.exports.run = function(csv){
 
 	Write your code below the comment.
 */
+	
+	//Need to split the keys and the values from each other
+	//each value is split from \n so I can grab the first value in the split array to make rows
+	//will look like FirstName,LastName,Age and split from the comma to be in an array
+	//then i can create a new array from the actual data names and ages ect...
+	//i need two loops kinda following a matrix like data structure
+	//create an object and loop through the data to add into the res array
+	const rows = csv.split("\n")
+	const headers = rows[0].split(",")
+	const data = rows.slice(1).map((str) => {
+		return str.split(",")
+	})
+	const res = []
+	for (let i = 0; i < data.length; i++){
+		let obj = {}
+		for (let j = 0; j < data[i].length; j++){
+			const header = headers[j]
+				obj[header] = data[i][j]
+		}
+		res.push(obj)
+	}
+	return res
 
 };
