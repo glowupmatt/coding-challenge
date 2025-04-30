@@ -8,3 +8,4 @@ To run the tests, and check your work, execute the following command in a termin
 ```
 npm run test
 ```
+# coding-challenge
